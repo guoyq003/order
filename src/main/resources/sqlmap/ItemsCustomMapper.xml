@@ -9,9 +9,9 @@
     <!--定义商品查询的SQL片段，主要是产品传的条件-->
     <!--使用动态sql，通过if判断，拼接查询sql-->
     <sql id="query_items_where">
-        <if test="items!=null">
-            <if test="items.name!=null and items.name!=''">
-                items.name like concat('%', #{items.name}, '%')
+        <if test="itemsCustom!=null">
+            <if test="itemsCustom.name!=null and itemsCustom.name!=''">
+                itemsCustom.name like concat('%', #{itemsCustom.name}, '%')
             </if>
         </if>
     </sql>

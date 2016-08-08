@@ -6,6 +6,7 @@ import com.jd.springmvc.po.Items;
 import com.jd.springmvc.po.ItemsCustom;
 import com.jd.springmvc.po.ItemsQueryVo;
 import com.jd.springmvc.service.ItemsService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,17 @@ public class ItemsServiceImpl implements ItemsService {
 
     public List<Items> findItemsList(Items items) throws Exception {
         return itemsMapper.findItemsList(items);
+    }
+
+    public ItemsCustom findItemsById(Integer id) throws Exception {
+        Items items=itemsMapper.findItemsById(id);
+        ItemsCustom itemsCustom=new ItemsCustom();
+        BeanUtils.copyProperties(items,itemsCustom);
+        return itemsCustom;
+    }
+
+    public void updateItems(Integer id, ItemsCustom itemsCustom) throws Exception {
+        itemsMapper.updateItems(id,itemsCustom);
     }
 
     public List<ItemsCustom> findItemsCustomList(ItemsQueryVo itemsQueryVo) throws Exception {

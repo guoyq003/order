@@ -22,4 +22,10 @@
             <include refid="query_items_where"/>
         </where>
     </select>
+    <select id="findItemsById" parameterType="int" resultType="com.jd.springmvc.po.ItemsCustom">
+        SELECT id,name,price,detail,createtime from tb_jd_items WHERE id=#{id}
+    </select>
+    <update id="updateItems" parameterType="com.jd.springmvc.po.Items">
+        update tb_jd_items set name=#{name},price=#{price},detail=#{detail} where id=#{id}
+    </update>
 </mapper>
