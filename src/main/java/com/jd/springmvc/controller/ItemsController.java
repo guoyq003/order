@@ -15,7 +15,7 @@ public class ItemsController {
     @Autowired
     private ItemsService itemsService;
 
-    @RequestMapping("/queryItemsListd")
+    @RequestMapping("/queryItemsList")
     public ModelAndView queryItems() throws Exception{
         List<Items> itemsList=itemsService.findItemsList(null);
         ModelAndView modelAndView=new ModelAndView();
