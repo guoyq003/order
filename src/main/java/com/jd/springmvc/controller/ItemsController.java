@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -18,22 +20,25 @@ public class ItemsController {
     @Autowired
     private ItemsService itemsService;
 
+    //使用两个不同的实现方式
     @RequestMapping("/queryItemsList")
-    public ModelAndView queryItems() throws Exception{
-        List<Items> itemsList=itemsService.findItemsList(null);
-        ModelAndView modelAndView=new ModelAndView();
-        modelAndView.addObject("itemsList",itemsList);
+    public ModelAndView queryItems() throws Exception {
+        List<Items> itemsList = itemsService.findItemsList(null);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("itemsList", itemsList);
         modelAndView.setViewName("item/itemsList");
         return modelAndView;
     }
+
     @RequestMapping("/queryItems")
-    public ModelAndView queryItemsList() throws Exception{
-        List<ItemsCustom> itemsList=itemsService.findItemsCustomList(null);
-        ModelAndView modelAndView=new ModelAndView();
-        modelAndView.addObject("itemsList",itemsList);
+    public ModelAndView queryItemsList(HttpServletRequest request) throws Exception {
+        List<ItemsCustom> itemsList = itemsService.findItemsCustomList(null);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("itemsList", itemsList);
         modelAndView.setViewName("item/itemsList");
         return modelAndView;
     }
+
     //1.使用ModelAndView方式
 //    @RequestMapping("editItems")
 //    @RequestMapping(value = "editItems",method = {RequestMethod.POST,RequestMethod.GET})
@@ -45,16 +50,30 @@ public class ItemsController {
 //        return modelAndView;
 //    }
     //2.使用String方式
-    @RequestMapping(value = "editItems",method = {RequestMethod.POST,RequestMethod.GET})
-    public String editItems(Model model) throws Exception{
-        ItemsCustom itemsCustom=itemsService.findItemsById(1);
-        model.addAttribute("itemsCustom",itemsCustom);
+    @RequestMapping(value = "editItems", method = {RequestMethod.POST, RequestMethod.GET})
+    //参数绑定，简单类型
+    //@RequestParam 形参中和pojo中的属性名称不一致时,使用该注解
+    //required 指定参数是否必传入
+    //defaultValue设置默认值，参数未传入时，将默认值和形参绑定(required = true,defaultValue = "1")
+    public String editItems(Model model,@RequestParam(value = "id") Integer itemsId) throws Exception {
+        ItemsCustom itemsCustom = itemsService.findItemsById(itemsId);
+        model.addAttribute("itemsCustom", itemsCustom);
         return "item/editItems";
     }
+
+    //    @RequestMapping("editItemsSubmit")
+//        public ModelAndView editItemsSubmit() throws Exception{
+//        ModelAndView modelAndView=new ModelAndView();
+//        modelAndView.setViewName("item/success");
+//        return modelAndView;
+//    }
     @RequestMapping("editItemsSubmit")
-    public ModelAndView editItemsSubmit() throws Exception{
-        ModelAndView modelAndView=new ModelAndView();
-        modelAndView.setViewName("item/success");
-        return modelAndView;
+    public String editItemsSubmit(HttpServletRequest request,Integer id,ItemsCustom itemsCustom) throws Exception {
+        itemsService.updateItems(id,itemsCustom);
+        //重定向关键字：redirect,request数据不共享
+//        return "redirect:queryItems.action";
+        //跳转关键字forward，request数据共享
+//        return "forward:queryItems.action";
+        return "item/success";
     }
 }

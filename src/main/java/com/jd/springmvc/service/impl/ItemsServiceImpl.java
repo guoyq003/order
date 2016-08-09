@@ -31,7 +31,8 @@ public class ItemsServiceImpl implements ItemsService {
     }
 
     public void updateItems(Integer id, ItemsCustom itemsCustom) throws Exception {
-        itemsMapper.updateItems(id,itemsCustom);
+        itemsCustom.setId(id);
+        itemsMapper.updateItems(itemsCustom);
     }
 
     public List<ItemsCustom> findItemsCustomList(ItemsQueryVo itemsQueryVo) throws Exception {
