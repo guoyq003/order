@@ -21,7 +21,7 @@
     <tr>
         <td>商品名称</td>
         <td>商品价格</td>
-        <%--<td>生产日期</td>--%>
+        <td>生产日期</td>
         <td>商品描述</td>
         <td>操作</td>
     </tr>
@@ -29,7 +29,7 @@
         <tr>
             <td>${item.name }</td>
             <td>${item.price }</td>
-            <%--<td><fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>--%>
+            <td><fmt:formatDate value="${item.createtime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
             <td>${item.detail }</td>
 
             <td><a href="${pageContext.request.contextPath }/item/editItems.action?id=${item.id}">修改</a></td>

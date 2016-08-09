@@ -7,7 +7,7 @@ public class Items {
     private String name;
     private float price;
     private String detail;
-    private Date createTime;
+    private Date createtime;
 
     public int getId() {
         return id;
@@ -41,12 +41,12 @@ public class Items {
         this.detail = detail;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class Items {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", detail='" + detail + '\'' +
-                ", createTime=" + createTime +
+                ", createTime=" + createtime +
                 '}';
     }
 }
