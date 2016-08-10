@@ -26,6 +26,6 @@
         SELECT id,name,price,detail,createtime from tb_jd_items WHERE id=#{id}
     </select>
     <update id="updateItems" parameterType="com.jd.springmvc.po.ItemsCustom">
-        update tb_jd_items set name=#{name},price=#{price},detail=#{detail} where id=#{id}
+        update tb_jd_items set name=#{name},price=#{price},detail=#{detail},createtime=#{createTime} where id=#{id}
     </update>
 </mapper>
