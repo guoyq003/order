@@ -11,7 +11,7 @@
     <sql id="query_items_where">
         <if test="itemsCustom!=null">
             <if test="itemsCustom.name!=null and itemsCustom.name!=''">
-                itemsCustom.name like concat('%', #{itemsCustom.name}, '%')
+                name like concat('%', #{itemsCustom.name}, '%')
             </if>
         </if>
     </sql>

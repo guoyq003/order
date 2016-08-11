@@ -2,6 +2,7 @@ package com.jd.springmvc.controller;
 
 import com.jd.springmvc.po.Items;
 import com.jd.springmvc.po.ItemsCustom;
+import com.jd.springmvc.po.ItemsQueryVo;
 import com.jd.springmvc.service.ItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,8 +32,8 @@ public class ItemsController {
     }
 
     @RequestMapping("/queryItems")
-    public ModelAndView queryItemsList(HttpServletRequest request) throws Exception {
-        List<ItemsCustom> itemsList = itemsService.findItemsCustomList(null);
+    public ModelAndView queryItemsList(HttpServletRequest request, ItemsQueryVo itemsQueryVo) throws Exception {
+        List<ItemsCustom> itemsList = itemsService.findItemsCustomList(itemsQueryVo);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("itemsList", itemsList);
         modelAndView.setViewName("item/itemsList");
