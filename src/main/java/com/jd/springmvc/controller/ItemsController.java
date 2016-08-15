@@ -78,4 +78,5 @@ public class ItemsController {
 //        return "forward:queryItems.action";
         return "item/success";
     }
+    //批量删除信息
 }
