@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.PublicKey;
 import java.util.List;
 
 @Controller
@@ -84,4 +85,17 @@ public class ItemsController {
         //调用service批量删除商品
         return "success";
     }
+//    //批量修改商品页面，必须先将商品查询出来，在页面中编辑
+//    @RequestMapping("/batchEditItems")
+//    public ModelAndView editItemsQuery(HttpServletRequest request, ItemsQueryVo itemsQueryVo) throws Exception {
+//        List<ItemsCustom> itemsList = itemsService.findItemsCustomList(itemsQueryVo);
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("itemsList", itemsList);
+//        modelAndView.setViewName("item/batchEditItems");
+//        return modelAndView;
+//    }
+    //批量修改商品提交
+//    public String batchEditItemsSubmit(ItemsQueryVo itemsQueryVo) throws Exception{
+//        return "success";
+//    }
 }
