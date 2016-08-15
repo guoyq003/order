@@ -51,7 +51,7 @@ public class ItemsController {
 //        return modelAndView;
 //    }
     //2.使用String方式
-    @RequestMapping(value = "editItems", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/editItems", method = {RequestMethod.POST, RequestMethod.GET})
     //参数绑定，简单类型
     //@RequestParam 形参中和pojo中的属性名称不一致时,使用该注解
     //required 指定参数是否必传入
@@ -68,7 +68,7 @@ public class ItemsController {
 //        modelAndView.setViewName("item/success");
 //        return modelAndView;
 //    }
-    @RequestMapping("editItemsSubmit")
+    @RequestMapping("/editItemsSubmit")
     //pojo参数绑定
     public String editItemsSubmit(HttpServletRequest request,Integer id,ItemsCustom itemsCustom) throws Exception {
         itemsService.updateItems(id,itemsCustom);
@@ -79,4 +79,9 @@ public class ItemsController {
         return "item/success";
     }
     //批量删除信息
+    @RequestMapping("/deleteItems")
+    public String deleteItems(Integer[] itemsId ) throws Exception{
+        //调用service批量删除商品
+        return "success";
+    }
 }
