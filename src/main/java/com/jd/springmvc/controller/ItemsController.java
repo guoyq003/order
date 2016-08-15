@@ -69,6 +69,7 @@ public class ItemsController {
 //        return modelAndView;
 //    }
     @RequestMapping("editItemsSubmit")
+    //pojo参数绑定
     public String editItemsSubmit(HttpServletRequest request,Integer id,ItemsCustom itemsCustom) throws Exception {
         itemsService.updateItems(id,itemsCustom);
         //重定向关键字：redirect,request数据不共享
