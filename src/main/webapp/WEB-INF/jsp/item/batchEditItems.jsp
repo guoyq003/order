@@ -15,12 +15,12 @@
         }
     function deleteItems(){
     	//提交form
-    	document.itemsForm.action="${pageContext.request.contextPath }/items/deleteItems.action";
+    	document.itemsForm.action="${pageContext.request.contextPath }/item/deleteItems.action";
     	document.itemsForm.submit();
     }
     function batchEditItemsSubmit(){
     	//提交form
-    	document.itemsForm.action="${pageContext.request.contextPath }/items/batchEditItemsSubmit.action";
+    	document.itemsForm.action="${pageContext.request.contextPath }/item/batchEditItemsSubmit.action";
     	document.itemsForm.submit();
     }
 </head>
