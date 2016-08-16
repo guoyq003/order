@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.PublicKey;
 import java.util.List;
 
 @Controller
@@ -51,7 +52,7 @@ public class ItemsController {
 //        return modelAndView;
 //    }
     //2.使用String方式
-    @RequestMapping(value = "editItems", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/editItems", method = {RequestMethod.POST, RequestMethod.GET})
     //参数绑定，简单类型
     //@RequestParam 形参中和pojo中的属性名称不一致时,使用该注解
     //required 指定参数是否必传入
@@ -68,7 +69,7 @@ public class ItemsController {
 //        modelAndView.setViewName("item/success");
 //        return modelAndView;
 //    }
-    @RequestMapping("editItemsSubmit")
+    @RequestMapping("/editItemsSubmit")
     //pojo参数绑定
     public String editItemsSubmit(HttpServletRequest request,Integer id,ItemsCustom itemsCustom) throws Exception {
         itemsService.updateItems(id,itemsCustom);
@@ -79,4 +80,22 @@ public class ItemsController {
         return "item/success";
     }
     //批量删除信息
+    @RequestMapping("/deleteItems")
+    public String deleteItems(Integer[] itemsId ) throws Exception{
+        //调用service批量删除商品
+        return "success";
+    }
+//    //批量修改商品页面，必须先将商品查询出来，在页面中编辑
+//    @RequestMapping("/batchEditItems")
+//    public ModelAndView editItemsQuery(HttpServletRequest request, ItemsQueryVo itemsQueryVo) throws Exception {
+//        List<ItemsCustom> itemsList = itemsService.findItemsCustomList(itemsQueryVo);
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("itemsList", itemsList);
+//        modelAndView.setViewName("item/batchEditItems");
+//        return modelAndView;
+//    }
+    //批量修改商品提交
+//    public String batchEditItemsSubmit(ItemsQueryVo itemsQueryVo) throws Exception{
+//        return "success";
+//    }
 }
