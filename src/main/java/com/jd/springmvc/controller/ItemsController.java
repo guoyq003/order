@@ -83,7 +83,7 @@ public class ItemsController {
     @RequestMapping("/deleteItems")
     public String deleteItems(Integer[] itemsId ) throws Exception{
         //调用service批量删除商品
-        return "success";
+        return "item/success";
     }
 //    //批量修改商品页面，必须先将商品查询出来，在页面中编辑
 //    @RequestMapping("/batchEditItems")

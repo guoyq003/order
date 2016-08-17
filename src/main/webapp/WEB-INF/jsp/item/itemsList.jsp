@@ -10,12 +10,12 @@
     <script type="text/javascript">
         function deleteItems(){
             //提交form
-            document.itemsForm.action="${pageContext.request.contextPath }/items/deleteItems.action";
+            document.itemsForm.action="${pageContext.request.contextPath }/item/deleteItems.action";
             document.itemsForm.submit();
         }
         function queryItems(){
             //提交form
-            document.itemsForm.action="${pageContext.request.contextPath }/items/queryItems.action";
+            document.itemsForm.action="${pageContext.request.contextPath }/item/queryItems.action";
             document.itemsForm.submit();
         }
     </script>
