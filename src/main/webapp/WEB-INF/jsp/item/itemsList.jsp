@@ -8,9 +8,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>查询商品列表</title>
     <script type="text/javascript">
-        function deleteItems(){
+        function batchDeleteItems(){
             //提交form
-            document.itemsForm.action="${pageContext.request.contextPath }/item/deleteItems.action";
+            document.itemsForm.action="${pageContext.request.contextPath }/item/batchDeleteItems.action";
             document.itemsForm.submit();
         }
         function queryItems(){
@@ -29,7 +29,7 @@
                 商品名称：<input name="itemsCustom.name"/>
             </td>
             <td><input type="button" value="查询" onclick="queryItems()"/>
-            <input type="button" value="批量删除" onclick="deleteItems()"/>
+            <input type="button" value="批量删除" onclick="batchDeleteItems()"/>
             </td>
         </tr>
     </table>

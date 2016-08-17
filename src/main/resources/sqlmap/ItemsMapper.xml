@@ -28,4 +28,10 @@
     <update id="updateItems" parameterType="com.jd.springmvc.po.ItemsCustom">
         update tb_jd_items set name=#{name},price=#{price},detail=#{detail},createtime=#{createTime} where id=#{id}
     </update>
+    <delete id="batchDeleteItems" parameterType="java.lang.Integer">
+        DELETE FROM tb_jd_items WHERE id in
+        <foreach collection="array" item="itemsId" open="(" separator="," close=")">
+                #{itemsId}</foreach>
+    </delete>
+    
 </mapper>

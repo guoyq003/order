@@ -79,10 +79,11 @@ public class ItemsController {
 //        return "forward:queryItems.action";
         return "item/success";
     }
-    //批量删除信息
-    @RequestMapping("/deleteItems")
+    //批量删除商品
+    @RequestMapping("/batchDeleteItems")
     public String deleteItems(Integer[] itemsId ) throws Exception{
         //调用service批量删除商品
+        itemsService.batchDeleteItems(itemsId);
         return "item/success";
     }
 //    //批量修改商品页面，必须先将商品查询出来，在页面中编辑

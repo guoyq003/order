@@ -30,6 +30,10 @@ public class ItemsServiceImpl implements ItemsService {
         return itemsCustom;
     }
 
+    public boolean batchDeleteItems(Integer[] itemsId) throws Exception {
+        return itemsMapper.batchDeleteItems(itemsId);
+    }
+
     public void updateItems(Integer id, ItemsCustom itemsCustom) throws Exception {
         itemsCustom.setId(id);
         itemsMapper.updateItems(itemsCustom);
