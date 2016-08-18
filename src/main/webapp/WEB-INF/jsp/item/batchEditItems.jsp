@@ -8,54 +8,42 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>查询商品列表</title>
     <script type="text/javascript">
-        function queryItems(){
-        	//提交form
-        	document.itemsForm.action="${pageContext.request.contextPath }/items/queryItems.action";
-        	document.itemsForm.submit();
-        }
-    function deleteItems(){
-    	//提交form
-    	document.itemsForm.action="${pageContext.request.contextPath }/item/deleteItems.action";
-    	document.itemsForm.submit();
-    }
     function batchEditItemsSubmit(){
     	//提交form
     	document.itemsForm.action="${pageContext.request.contextPath }/item/batchEditItemsSubmit.action";
     	document.itemsForm.submit();
     }
+    </script>
 </head>
 <body>
-    <form action="${pageContext.request.contextPath }/item/queryItems.action" method="post">
-        查询条件：
-        <table width="100%" border=1>
-        <tr>
-            <td>
-                商品名称：<input name="itemsCustom.name"/>
-            </td>
-            <td><input type="button" value="查询" onclick="queryItems()"/>
-               <input type="button" value="批量修改提交" onclick="batchEditItemsSubmit()"/>
-            </td>
-        </tr>
-    </table>
+<form name="itemsForm" action="${pageContext.request.contextPath }/item/batchEditItems.action" method="post">
     商品列表：
     <table width="100%" border=1>
     <tr>
-        <td>选择</td>
         <td>商品名称</td>
         <td>商品价格</td>
         <td>生产日期</td>
         <td>商品描述</td>
-        <td>操作</td>
     </tr>
     <c:forEach items="${itemsList }" var="item" varStatus="status">
                <tr>
                     <td><input name="itemsCustoms$[status.index].name" value="${item.name }"/></td>
                     <td><input name="itemsCustoms$[status.index].price" value="${item.price }"/></td>
                     <td><input name="itemsCustoms$[status.index].createTime" value="<fmt:formatDate value="${item.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/></td>
-                    <td><input name="itemsCustoms$[status.index].detail" value="${item.detail }"</td>
+                    <td><input name="itemsCustoms$[status.index].detail" value="${item.detail }"/></td>
                 </tr>
     </c:forEach>
 </table>
+    <table width="100%" border=1>
+        <tr>
+            <td width="10%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" value="提交" onclick="batchEditItemsSubmit()"/>
+            </td>
+        </tr>
+    </table>
 </form>
         </body>
         </html>
