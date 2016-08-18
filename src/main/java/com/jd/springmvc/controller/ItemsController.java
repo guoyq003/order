@@ -81,22 +81,22 @@ public class ItemsController {
     }
     //批量删除商品
     @RequestMapping("/batchDeleteItems")
-    public String deleteItems(Integer[] itemsId ) throws Exception{
+    public String batchDeleteItems(Integer[] itemsId ) throws Exception{
         //调用service批量删除商品
         itemsService.batchDeleteItems(itemsId);
         return "item/success";
     }
-//    //批量修改商品页面，必须先将商品查询出来，在页面中编辑
-//    @RequestMapping("/batchEditItems")
-//    public ModelAndView editItemsQuery(HttpServletRequest request, ItemsQueryVo itemsQueryVo) throws Exception {
-//        List<ItemsCustom> itemsList = itemsService.findItemsCustomList(itemsQueryVo);
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.addObject("itemsList", itemsList);
-//        modelAndView.setViewName("item/batchEditItems");
-//        return modelAndView;
-//    }
+    //批量修改商品页面，必须先将商品查询出来，在页面中编辑
+    @RequestMapping("/batchEditItems")
+    public ModelAndView editItemsQuery(HttpServletRequest request, ItemsQueryVo itemsQueryVo) throws Exception {
+        List<ItemsCustom> itemsList = itemsService.findItemsCustomList(itemsQueryVo);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("itemsList", itemsList);
+        modelAndView.setViewName("item/batchEditItems");
+        return modelAndView;
+    }
     //批量修改商品提交
-//    public String batchEditItemsSubmit(ItemsQueryVo itemsQueryVo) throws Exception{
-//        return "success";
-//    }
+    public String batchEditItemsSubmit(ItemsQueryVo itemsQueryVo) throws Exception{
+        return "success";
+    }
 }
