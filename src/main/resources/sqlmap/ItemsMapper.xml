@@ -31,7 +31,16 @@
     <delete id="batchDeleteItems" parameterType="java.lang.Integer">
         DELETE FROM tb_jd_items WHERE id in
         <foreach collection="array" item="itemsId" open="(" separator="," close=")">
-                #{itemsId}</foreach>
+            #{itemsId}
+        </foreach>
     </delete>
-    
+    <update id="batchUpdateItems" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update tb_jd_items
+            <set>
+                name=${item.name}
+            </set>
+            where id = ${item.id}
+        </foreach>
+    </update>
 </mapper>
