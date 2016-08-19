@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.PublicKey;
 import java.util.List;
 
 @Controller
@@ -97,8 +96,8 @@ public class ItemsController {
     }
     //批量修改商品提交,通过ItemsQueryVo接收批量提交商品信息，将商品信息存储到ItemsQueryVo的ItemsCustoms中
     @RequestMapping("/batchEditItemsSubmit")
-    public String batchEditItemsSubmit(HttpServletRequest request, ItemsQueryVo itemsQueryVo) throws Exception{
-        System.out.println("list:"+itemsQueryVo.getItemsList().size());
+    public String batchEditItemsSubmit(ItemsQueryVo itemsQueryVo) throws Exception{
+      itemsService.batchUpdateItems(itemsQueryVo.getItemsList());
         return "item/success";
     }
 }

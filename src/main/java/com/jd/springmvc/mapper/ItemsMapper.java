@@ -14,4 +14,5 @@ public interface ItemsMapper {
     //注意mapper的接口和service的接口的区别
     public int updateItems(ItemsCustom itemsCustom) throws Exception;
     public boolean batchDeleteItems(Integer[] itemsId) throws Exception;
+    public void batchUpdateItems(List<ItemsCustom> itemsList) throws Exception;
 }

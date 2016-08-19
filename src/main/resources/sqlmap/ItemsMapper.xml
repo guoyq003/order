@@ -35,12 +35,12 @@
         </foreach>
     </delete>
     <update id="batchUpdateItems" parameterType="java.util.List">
-        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        <foreach collection="list" item="itemsList" index="index" open="" close="" separator=";">
             update tb_jd_items
             <set>
-                name=${item.name}
+                name=#{itemsList.name}
             </set>
-            where id = ${item.id}
+            where id = #{itemsList.id}
         </foreach>
     </update>
 </mapper>
