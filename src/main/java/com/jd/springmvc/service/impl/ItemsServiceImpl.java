@@ -42,4 +42,8 @@ public class ItemsServiceImpl implements ItemsService {
     public List<ItemsCustom> findItemsCustomList(ItemsQueryVo itemsQueryVo) throws Exception {
         return itemsCustomMapper.findItemsCustomList(itemsQueryVo);
     }
+
+    public void batchUpdateItems(List<ItemsCustom> itemsList) throws Exception {
+        itemsMapper.batchUpdateItems(itemsList);
+    }
 }

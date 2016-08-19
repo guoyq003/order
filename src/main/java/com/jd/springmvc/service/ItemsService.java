@@ -13,4 +13,5 @@ public interface ItemsService {
     public ItemsCustom findItemsById(Integer id) throws Exception;
     public void updateItems(Integer id,ItemsCustom itemsCustom) throws Exception;
     public boolean batchDeleteItems(Integer[] itemsId) throws Exception;
+    public void batchUpdateItems(List<ItemsCustom> itemsList) throws Exception;
 }
