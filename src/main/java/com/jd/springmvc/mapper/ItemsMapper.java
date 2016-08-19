@@ -3,7 +3,9 @@ package com.jd.springmvc.mapper;
 import com.jd.springmvc.po.Items;
 import com.jd.springmvc.po.ItemsCustom;
 import com.jd.springmvc.po.ItemsQueryVo;
+import org.apache.ibatis.annotations.Param;
 
+import javax.xml.registry.infomodel.User;
 import java.util.List;
 
 public interface ItemsMapper {
@@ -12,5 +14,4 @@ public interface ItemsMapper {
     //注意mapper的接口和service的接口的区别
     public int updateItems(ItemsCustom itemsCustom) throws Exception;
     public boolean batchDeleteItems(Integer[] itemsId) throws Exception;
-    public int batchUpdateItems(List<ItemsQueryVo> itemsQueryVos)throws Exception;
 }

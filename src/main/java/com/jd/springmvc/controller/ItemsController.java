@@ -97,9 +97,8 @@ public class ItemsController {
     }
     //批量修改商品提交,通过ItemsQueryVo接收批量提交商品信息，将商品信息存储到ItemsQueryVo的ItemsCustoms中
     @RequestMapping("/batchEditItemsSubmit")
-    public String batchEditItemsSubmit(ItemsQueryVo itemsQueryVo) throws Exception{
-        List<ItemsCustom> itemsList=itemsService.batchUpdateItems();
-        itemsService.batchUpdateItems();
+    public String batchEditItemsSubmit(HttpServletRequest request, ItemsQueryVo itemsQueryVo) throws Exception{
+        System.out.println("list:"+itemsQueryVo.getItemsList().size());
         return "item/success";
     }
 }

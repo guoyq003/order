@@ -39,12 +39,7 @@ public class ItemsServiceImpl implements ItemsService {
         itemsMapper.updateItems(itemsCustom);
     }
 
-    public int batchUpdateItems(List<ItemsQueryVo> itemsQueryVos) throws Exception {
-        return ;
-    }
-
     public List<ItemsCustom> findItemsCustomList(ItemsQueryVo itemsQueryVo) throws Exception {
         return itemsCustomMapper.findItemsCustomList(itemsQueryVo);
     }
-
 }

@@ -5,14 +5,14 @@ import java.util.List;
 public class ItemsQueryVo {
     private Items items;
     private ItemsCustom itemsCustom;
-    private List<ItemsCustom> itemsCustoms;
+    private List<ItemsCustom> itemsList;
 
-    public List<ItemsCustom> getItemsCustoms() {
-        return itemsCustoms;
+    public List<ItemsCustom> getItemsList() {
+        return itemsList;
     }
 
-    public void setItemsCustoms(List<ItemsCustom> itemsCustoms) {
-        this.itemsCustoms = itemsCustoms;
+    public void setItemsList(List<ItemsCustom> itemsList) {
+        this.itemsList = itemsList;
     }
 
     public Items getItems() {
