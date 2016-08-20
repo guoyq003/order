@@ -1,10 +1,15 @@
 package com.jd.springmvc.po;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class Items {
     private int id;
+    @Size(min = 1,max = 30,message = "{items.name.length.error}")
     private String name;
+    @NotNull(message = "{items.createTime.isNUll}")
     private float price;
     private String detail;
     private Date createTime;

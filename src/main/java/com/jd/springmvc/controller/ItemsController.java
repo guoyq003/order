@@ -7,6 +7,9 @@ import com.jd.springmvc.service.ItemsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,7 +73,23 @@ public class ItemsController {
 //    }
     @RequestMapping("/editItemsSubmit")
     //pojo参数绑定
-    public String editItemsSubmit(HttpServletRequest request,Integer id,ItemsCustom itemsCustom) throws Exception {
+    //批量修改商品提交,通过ItemsQueryVo接收批量提交商品信息，将商品信息存储到ItemsQueryVo的ItemsCustoms中
+    // 在需要校验的pojo前边添加@Validated，在需要校验的pojo后边添加BindingResult
+    // bindingResult接收校验出错信息
+    // 注意：@Validated和BindingResult bindingResult是配对出现，并且形参顺序是固定的（一前一后）。
+    // value={ValidGroup1.class}指定使用ValidGroup1分组的校验
+    public String editItemsSubmit(Model model,HttpServletRequest request, Integer id,
+                                  @Validated ItemsCustom itemsCustom, BindingResult bindingResult) throws Exception {
+        if (bindingResult.hasErrors()){
+            List<ObjectError> errors=bindingResult.getAllErrors();
+            for (ObjectError objectError:errors){
+                System.out.println(objectError.getDefaultMessage());
+            }
+            //将错误信息传到页面
+            model.addAttribute("errors",errors);
+            //出错重新到商品修改页面
+            return "item/editItems";
+        }
         itemsService.updateItems(id,itemsCustom);
         //重定向关键字：redirect,request数据不共享
 //        return "redirect:queryItems.action";
@@ -94,7 +113,7 @@ public class ItemsController {
         modelAndView.setViewName("item/batchEditItems");
         return modelAndView;
     }
-    //批量修改商品提交,通过ItemsQueryVo接收批量提交商品信息，将商品信息存储到ItemsQueryVo的ItemsCustoms中
+
     @RequestMapping("/batchEditItemsSubmit")
     public String batchEditItemsSubmit(ItemsQueryVo itemsQueryVo) throws Exception{
         itemsService.batchUpdateItems(itemsQueryVo.getItemsList());

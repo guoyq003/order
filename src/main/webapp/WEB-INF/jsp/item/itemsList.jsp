@@ -29,7 +29,7 @@
                 商品名称：<input name="itemsCustom.name"/>
             </td>
             <td><input type="button" value="查询" onclick="queryItems()"/>
-            <input type="button" value="批量删除" onclick="batchDeleteItems()"/>
+            <input type="button" value="删除" onclick="batchDeleteItems()"/>
             </td>
         </tr>
     </table>
