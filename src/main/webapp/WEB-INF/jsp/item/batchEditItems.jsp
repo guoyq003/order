@@ -42,11 +42,12 @@
             <td>商品描述</td>
         </tr>
         <c:forEach items="${itemsList }" var="item" varStatus="status">
+            <input type="hidden" name="itemsList[${status.index }].id" value="${item.id }"/>
             <tr>
                 <td><input name="itemsList[${status.index }].name" value="${item.name }"/></td>
-                <td><input name="itemsList$[${status.index }].price" value="${item.price }"/></td>
-                <td><input name="itemsList$[${status.index }].createTime" value="<fmt:formatDate value="${item.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/></td>
-                <td><input name="itemsList$[${status.index }].detail" value="${item.detail }"/></td>
+                <td><input name="itemsList[${status.index }].price" value="${item.price }"/></td>
+                <td><input name="itemsList[${status.index }].createTime" value="<fmt:formatDate value="${item.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"/></td>
+                <td><input name="itemsList[${status.index }].detail" value="${item.detail }"/></td>
             </tr>
         </c:forEach>
     </table>

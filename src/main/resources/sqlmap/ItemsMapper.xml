@@ -38,9 +38,12 @@
         <foreach collection="list" item="itemsList" index="index" open="" close="" separator=";">
             update tb_jd_items
             <set>
-                name=#{itemsList.name}
+                name=#{itemsList.name},
+                price=#{itemsList.price},
+                detail=#{itemsList.detail},
+                createtime=#{itemsList.createTime}
             </set>
-            where id = #{itemsList.id}
+            where id =#{itemsList.id}
         </foreach>
     </update>
 </mapper>

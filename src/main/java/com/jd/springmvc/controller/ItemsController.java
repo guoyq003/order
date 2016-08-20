@@ -23,7 +23,7 @@ public class ItemsController {
 
     //使用两个不同的实现方式
     @RequestMapping("/queryItemsList")
-    public ModelAndView queryItems() throws Exception {
+    public ModelAndView queryItemsList() throws Exception {
         List<Items> itemsList = itemsService.findItemsList(null);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("itemsList", itemsList);
@@ -32,7 +32,7 @@ public class ItemsController {
     }
 
     @RequestMapping("/queryItems")
-    public ModelAndView queryItemsList(HttpServletRequest request, ItemsQueryVo itemsQueryVo) throws Exception {
+    public ModelAndView queryItems(HttpServletRequest request, ItemsQueryVo itemsQueryVo) throws Exception {
         List<ItemsCustom> itemsList = itemsService.findItemsCustomList(itemsQueryVo);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("itemsList", itemsList);
@@ -87,7 +87,7 @@ public class ItemsController {
     }
     //批量修改商品页面，必须先将商品查询出来，在页面中编辑
     @RequestMapping("/batchEditItems")
-    public ModelAndView editItemsQuery(HttpServletRequest request, ItemsQueryVo itemsQueryVo) throws Exception {
+    public ModelAndView batchEditItems(HttpServletRequest request, ItemsQueryVo itemsQueryVo) throws Exception {
         List<ItemsCustom> itemsList = itemsService.findItemsCustomList(itemsQueryVo);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("itemsList", itemsList);
@@ -97,7 +97,7 @@ public class ItemsController {
     //批量修改商品提交,通过ItemsQueryVo接收批量提交商品信息，将商品信息存储到ItemsQueryVo的ItemsCustoms中
     @RequestMapping("/batchEditItemsSubmit")
     public String batchEditItemsSubmit(ItemsQueryVo itemsQueryVo) throws Exception{
-      itemsService.batchUpdateItems(itemsQueryVo.getItemsList());
+        itemsService.batchUpdateItems(itemsQueryVo.getItemsList());
         return "item/success";
     }
 }
