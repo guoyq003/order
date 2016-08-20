@@ -1,5 +1,6 @@
 package com.jd.springmvc.controller;
 
+import com.jd.springmvc.controller.validation.ValidGroup1;
 import com.jd.springmvc.po.Items;
 import com.jd.springmvc.po.ItemsCustom;
 import com.jd.springmvc.po.ItemsQueryVo;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -78,8 +80,9 @@ public class ItemsController {
     // bindingResult接收校验出错信息
     // 注意：@Validated和BindingResult bindingResult是配对出现，并且形参顺序是固定的（一前一后）。
     // value={ValidGroup1.class}指定使用ValidGroup1分组的校验
-    public String editItemsSubmit(Model model,HttpServletRequest request, Integer id,
-                                  @Validated ItemsCustom itemsCustom, BindingResult bindingResult) throws Exception {
+    //value = {ValidGroup1.class指定使用ValidGroup1分组校验
+    public String editItemsSubmit(Model model, HttpServletRequest request, Integer id,
+                                  @Validated(value = {ValidGroup1.class}) ItemsCustom itemsCustom, BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors()){
             List<ObjectError> errors=bindingResult.getAllErrors();
             for (ObjectError objectError:errors){
