@@ -1,6 +1,7 @@
 package com.jd.springmvc.controller;
 
 import com.jd.springmvc.controller.validation.ValidGroup1;
+import com.jd.springmvc.controller.validation.ValidGroup2;
 import com.jd.springmvc.po.Items;
 import com.jd.springmvc.po.ItemsCustom;
 import com.jd.springmvc.po.ItemsQueryVo;
