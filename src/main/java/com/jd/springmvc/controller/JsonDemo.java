@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by guoyq on 2016/8/21.
  */
 @Controller
+@RequestMapping("item")//窄化请求
 public class JsonDemo {
 
     //请求json串(商品信息)，输出json(商品信息)
