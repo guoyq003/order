@@ -1,14 +1,9 @@
 package com.jd.springmvc.po;
 
 import com.jd.springmvc.controller.validation.ValidGroup1;
-import com.jd.springmvc.controller.validation.ValidGroup2;
-
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.util.Date;
-
 public class Items {
     private int id;
     //group:此校验属于哪个分组，group可以定义多个分组
