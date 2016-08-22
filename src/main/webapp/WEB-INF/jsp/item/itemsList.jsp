@@ -27,6 +27,12 @@
         <tr>
             <td>
                 商品名称：<input name="itemsCustom.name"/>
+                商品类型：
+                <select name="itemType">
+                    <c:forEach items="${itemTypes}" var="itemType">
+                        <option value="${itemType.key}">${itemType.value}</option>
+                    </c:forEach>
+                </select>
             </td>
             <td><input type="button" value="查询" onclick="queryItems()"/>
             <input type="button" value="删除" onclick="batchDeleteItems()"/>
