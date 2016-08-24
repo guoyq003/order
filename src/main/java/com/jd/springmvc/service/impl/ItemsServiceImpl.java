@@ -38,7 +38,6 @@ public class ItemsServiceImpl implements ItemsService {
         itemsCustom.setId(id);
         itemsMapper.updateItems(itemsCustom);
     }
-
     public List<ItemsCustom> findItemsCustomList(ItemsQueryVo itemsQueryVo) throws Exception {
         return itemsCustomMapper.findItemsCustomList(itemsQueryVo);
     }
