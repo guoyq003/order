@@ -19,7 +19,7 @@
         配置静态资源，直接映射到对应的文件夹，不被DispatcherServlet处理，3.04新增功能，需要重新设置spring-mvc-3.0.xsd
     -->
     <!--<mvc:resources mapping="/img/**" location="/img/" />-->
-    <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
     <!--<mvc:resources mapping="/css/**" location="/css/" />-->
     <!--<mvc:resources mapping="/html/**" location="/html/" />-->
 
@@ -41,25 +41,44 @@
     </bean>
     <!-- 校验器 -->
     <bean id="validator"
-    class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
-    <!-- hibernate校验器-->
-    <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
-    <!-- 指定校验使用的资源文件，在文件中配置校验错误信息，如果不指定则默认使用classpath下的ValidationMessages.properties -->
-    <property name="validationMessageSource" ref="messageSource"/>
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <!-- hibernate校验器-->
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        <!-- 指定校验使用的资源文件，在文件中配置校验错误信息，如果不指定则默认使用classpath下的ValidationMessages.properties -->
+        <property name="validationMessageSource" ref="messageSource"/>
     </bean>
     <!-- 校验错误信息配置文件 -->
     <bean id="messageSource"
-    class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-    <!-- 资源文件名-->
-    <property name="basenames">
-    <list>
-    <value>classpath:properties/CustomValidationMessages</value>
-    </list>
-    </property>
-    <!-- 资源文件编码格式 -->
-    <property name="fileEncodings" value="utf-8"/>
-    <!-- 对资源文件内容缓存时间，单位秒 -->
-    <property name="cacheSeconds" value="120"/>
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <!-- 资源文件名-->
+        <property name="basenames">
+            <list>
+                <value>classpath:properties/CustomValidationMessages</value>
+            </list>
+        </property>
+        <!-- 资源文件编码格式 -->
+        <property name="fileEncodings" value="utf-8"/>
+        <!-- 对资源文件内容缓存时间，单位秒 -->
+        <property name="cacheSeconds" value="120"/>
     </bean>
+    <!--拦截器 -->
+    <mvc:interceptors>
+        <!--多个拦截器,顺序执行 -->
+        <!-- 登陆认证拦截器 -->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<bean class="com.jd.springmvc.interceptor.LoginInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
+        <mvc:interceptor>
+            <!-- /**表示所有url包括子url路径 -->
+            <mvc:mapping path="/**"/>
+            <bean class="com.jd.springmvc.interceptor.HandlerInterceptor1"></bean>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.jd.springmvc.interceptor.HandlerInterceptor2"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
 
